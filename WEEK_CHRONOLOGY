@@ -1,0 +1,7 @@
+Week_Chronology = RANKX(
+    ALLSELECTED('Stock_Data'[Week]),
+    'Stock_Data'[Week],
+    ,
+    DESC,
+    Dense
+)
