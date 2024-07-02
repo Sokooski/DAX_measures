@@ -1,0 +1,14 @@
+Calendar_Table = 
+ADDCOLUMNS(
+    CALENDAR(DATE(2020, 1, 1), DATE(2025, 12, 31)),
+    "Year", YEAR([Date]),
+    "Month Number", MONTH([Date]),
+    "Month Name", FORMAT([Date], "MMMM"),
+    "Day", DAY([Date]),
+    "Quarter", "Q" & FORMAT([Date], "Q"),
+    "Weekday Number", WEEKDAY([Date]),
+    "Weekday Name", FORMAT([Date], "dddd"),
+    "Is Weekend", IF(WEEKDAY([Date], 2) > 5, 0, 1),
+    "Start", [Date] + TIME(7, 30, 0),
+    "End", [Date] + TIME(17, 0, 0)
+)
