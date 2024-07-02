@@ -1,0 +1,10 @@
+Resolution Time (Hrs) =
+VAR _Start = 'Request Data'[Created At] //when request was created
+Var _End = 'Request Data'[Resolved At] // when request was resolved
+Return SUMX(
+            CALCULATETABLE(
+                    Calendar_Table,
+                    DATESBETWEEN(Calendar_Table[Date],_Start,_End), //include days between creation and resolved dates
+                    Calendar_Table[Workday] = 1 //include only working days, workday = 1 (exclude weekends, workday = 0)
+            ),
+        MAX(MIN(Calendar_Table[End],_End) - MAX(Calendar_Table[Start],_Start),0) * 24 //calculate hours
